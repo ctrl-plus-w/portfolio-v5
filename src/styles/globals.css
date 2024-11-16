@@ -6,6 +6,6 @@
 
 @layer base {
     :root {
-        @apply font-sans;
+        @apply text-primary bg-secondary font-sans;
     }
 }
