@@ -4,14 +4,14 @@
 	"tabWidth": 2,
 	"singleQuote": true,
 
-	"plugins": ["@trivago/prettier-plugin-sort-imports"],
+	"plugins": ["@trivago/prettier-plugin-sort-imports", "prettier-plugin-tailwindcss"],
 
 	"importOrder": [
 		"^react$",
 		"next",
-		"<THIRD_PARTY_MODULES>", 
+		"<THIRD_PARTY_MODULES>",
 		"^@/style/(.*)$",
-		
+
 		"^@/page/(.*)$",
 		"^@/feature/(.*)$",
 		"^@/layout/(.*)$",

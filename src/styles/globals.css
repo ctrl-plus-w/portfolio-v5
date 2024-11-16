@@ -8,4 +8,8 @@
     :root {
         @apply text-primary bg-secondary font-sans;
     }
+
+    html, body {
+        @apply w-svw h-svh overflow-hidden;
+    }
 }

@@ -11,9 +11,15 @@ const config: Config = {
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
       },
+      width: {
+        svw: '100svw',
+      },
+      height: {
+        svh: '100svh',
+      },
       colors: {
         primary: '#02081E',
-        secondary: '#FFFDFA',
+        secondary: '#FEF8F1',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
