@@ -1,6 +1,4 @@
-import { AnchorHTMLAttributes, ComponentProps, forwardRef, ReactNode, RefAttributes } from 'react';
-
-import Link, { LinkProps } from 'next/link';
+import { AnchorHTMLAttributes, ComponentProps } from 'react';
 
 import { ExternalLinkIcon, EyeNoneIcon } from '@radix-ui/react-icons';
 import { IconProps } from '@radix-ui/react-icons/dist/types';
