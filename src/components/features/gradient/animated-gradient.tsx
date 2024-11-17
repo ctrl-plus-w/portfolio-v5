@@ -26,7 +26,8 @@ const GradientPlane = () => {
 
   const uniforms = useMemo(
     () => ({
-      uTime: { value: 0.0 },
+      uTime: { value: 0 },
+      uSaturation: { value: 0 },
       uMouse: { value: [0, 0] },
       uMouseOpacity: { value: 0 },
     }),
@@ -34,6 +35,7 @@ const GradientPlane = () => {
   );
 
   const [mousePosition, setMousePosition] = useState([-1, -1]);
+  const [clicking, setClicking] = useState(false);
   const [hovering, setHovering] = useState(false);
 
   const handleMouseMove = (event: ThreeEvent<PointerEvent>) => {
@@ -49,6 +51,9 @@ const GradientPlane = () => {
   const handleMouseEnter = () => setHovering(true);
   const handleMouseLeave = () => setHovering(false);
 
+  const handleMouseDown = () => setClicking(true);
+  const handleMouseUp = () => setClicking(false);
+
   useFrame((state, delta) => {
     if (!materialRef.current) return;
 
@@ -59,7 +64,11 @@ const GradientPlane = () => {
     const currentTime = materialRef.current.uniforms.uTime.value;
     const elapsedTime = state.clock.elapsedTime / 5;
     const noise = (noise2D(elapsedTime, elapsedTime) + 1) / 2;
-    materialRef.current.uniforms.uTime.value = currentTime + delta * noise * 4;
+    const speedFactor = clicking ? 5 : 1;
+    materialRef.current.uniforms.uTime.value = currentTime + delta * noise * speedFactor * 4;
+
+    const currentSaturation = materialRef.current.uniforms.uSaturation.value;
+    materialRef.current.uniforms.uSaturation.value = lerp(currentSaturation, clicking ? 1 : 0, 0.1);
 
     const currentMouseOpacity = materialRef.current.uniforms.uMouseOpacity.value;
     materialRef.current.uniforms.uMouseOpacity.value = lerp(currentMouseOpacity, hovering ? 1 : 0, 0.1);
@@ -72,7 +81,13 @@ const GradientPlane = () => {
   });
 
   return (
-    <mesh onPointerMove={handleMouseMove} onPointerEnter={handleMouseEnter} onPointerLeave={handleMouseLeave}>
+    <mesh
+      onPointerMove={handleMouseMove}
+      onPointerEnter={handleMouseEnter}
+      onPointerLeave={handleMouseLeave}
+      onPointerDown={handleMouseDown}
+      onPointerUp={handleMouseUp}
+    >
       <planeGeometry args={[2, 2]} />
       <shaderMaterial transparent={true} ref={materialRef} {...{ fragmentShader, vertexShader, uniforms }} />
     </mesh>

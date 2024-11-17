@@ -1,5 +1,6 @@
 uniform float uTime;
 uniform float uMouseOpacity;
+uniform float uSaturation;
 uniform vec2 uMouse;
 varying vec2 vUv;
 
@@ -100,6 +101,10 @@ void main() {
 
         finalColor += distanceFactor * mix(color1, color2, localDisplacement) * uMouseOpacity;
     }
+
+    float gray = dot(finalColor, vec3(0.299, 0.587, 0.114));
+
+    finalColor = mix(vec3(gray), finalColor, uSaturation);
 
     gl_FragColor = vec4(finalColor, 1.0);
 }
