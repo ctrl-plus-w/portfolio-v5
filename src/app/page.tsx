@@ -1,10 +1,14 @@
 'use client';
 
+import { useEffect } from 'react';
+
 import AnimatedGradient from '@/feature/gradient/animated-gradient';
 import Headings from '@/feature/hero/headings';
 import SelectedProjects from '@/feature/hero/selected-projects';
 
 const Page = () => {
+  useEffect(() => {}, []);
+
   return (
     <div className="w-svh h-svh overflow-y-scroll overscroll-none">
       <main className="sticky top-0 z-10 grid h-svh w-full grid-cols-[2fr_1fr] grid-rows-[auto_1fr_auto] gap-x-32 p-8">

@@ -1,11 +1,14 @@
-import { ComponentProps } from 'react';
+import { ComponentProps, forwardRef } from 'react';
+
+import { motion, MotionProps } from 'motion/react';
 
 import { cn } from '@/util/style.util';
 
-export type Heading1Props = ComponentProps<'h1'>;
+export interface Heading1Props extends Omit<ComponentProps<'h1'>, keyof MotionProps | 'ref'>, MotionProps {}
 
-const Heading1 = ({ className, ...props }: Heading1Props) => {
-  return <h1 className={cn('text-5xl text-primary', className)} {...props} />;
-};
+const Heading1 = forwardRef<HTMLHeadingElement, Heading1Props>(({ className, ...props }, ref) => {
+  return <motion.h1 className={cn('text-5xl text-primary', className)} {...props} ref={ref} />;
+});
+Heading1.displayName = 'Heading1';
 
 export default Heading1;
