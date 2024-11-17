@@ -1,31 +1,29 @@
-import { AnchorHTMLAttributes, ComponentProps, ReactNode, RefAttributes } from 'react';
+import { AnchorHTMLAttributes, ComponentProps, forwardRef, ReactNode, RefAttributes } from 'react';
 
 import Link, { LinkProps } from 'next/link';
 
 import { ExternalLinkIcon, EyeNoneIcon } from '@radix-ui/react-icons';
 import { IconProps } from '@radix-ui/react-icons/dist/types';
+import { motion, MotionProps } from 'motion/react';
 
 import Heading3, { Heading3Props } from '@/element/heading3';
 import Text, { TextProps } from '@/element/text';
 
 import { cn } from '@/util/style.util';
 
-export type CardProps = ComponentProps<'div'>;
+export interface CardProps extends Omit<ComponentProps<'div'>, keyof MotionProps | 'ref'>, MotionProps {}
 
 export const CardRoot = ({ className, ...props }: CardProps) => {
-  return <div {...props} className={cn('flex flex-col gap-3', className)} />;
+  return <motion.div {...props} className={cn('flex flex-col gap-3', className)} />;
 };
 
-export type LinkCardProps = Omit<AnchorHTMLAttributes<HTMLAnchorElement>, keyof LinkProps> &
-  LinkProps & {
-    children?: ReactNode | undefined;
-  } & RefAttributes<HTMLAnchorElement>;
+export interface LinkCardProps extends Omit<AnchorHTMLAttributes<HTMLAnchorElement>, keyof MotionProps>, MotionProps {}
 
 export const LinkCardRoot = ({ href, className, ...props }: LinkCardProps) => {
   return (
-    <Link
+    <motion.a
       className={cn(
-        '-m-4 flex cursor-pointer flex-col gap-3 rounded-md p-4 transition-all duration-100 ease-in-out hover:bg-primary/5',
+        '-m-4 flex cursor-pointer flex-col gap-3 rounded-md p-4 transition-colors duration-100 ease-in-out hover:bg-primary/5',
         className,
       )}
       href={href}

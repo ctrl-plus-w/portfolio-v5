@@ -15,13 +15,13 @@ const Headings = () => {
 
   return (
     <div className="flex flex-col items-start gap-5 pl-16 pt-16">
-      <Heading2 {...slideDownAnimation}>Lukas Laudrain • Full-Stack Developer</Heading2>
+      <Heading2 {...slideDownAnimation(0.4)}>Lukas Laudrain • Full-Stack Developer</Heading2>
 
       <Heading1 ref={scope}>
         {mapChildren('Streamlining operations with custom web apps tailored to your business needs')}
       </Heading1>
 
-      <Button className="mt-3" {...popAnimation}>
+      <Button className="mt-3" {...popAnimation(2.5)}>
         Let&apos;s talk
       </Button>
     </div>
