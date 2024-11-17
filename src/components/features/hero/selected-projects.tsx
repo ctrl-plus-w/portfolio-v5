@@ -13,17 +13,7 @@ const SelectedProjects = () => {
   const [scope, animate] = useAnimate();
 
   useLayoutEffect(() => {
-    animate(
-      '.card',
-      {
-        opacity: 1,
-      },
-      {
-        duration: 0.8,
-        delay: stagger(0.1, { startDelay: 2.5 }),
-        ease: 'linear',
-      },
-    );
+    animate('.card', { opacity: 1 }, { duration: 0.8, delay: stagger(0.1, { startDelay: 2.5 }), ease: 'linear' });
   }, []);
 
   return (
