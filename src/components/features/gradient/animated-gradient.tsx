@@ -3,7 +3,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 
 import * as THREE from 'three';
-import { OrbitControls } from '@react-three/drei';
 import { Canvas, ThreeEvent, useFrame, useThree } from '@react-three/fiber';
 import {
   animate,
@@ -126,7 +125,6 @@ const AnimatedGradient = () => {
       </svg>
 
       <Canvas camera={{ position: [0, 0, 1.1] }} style={{ background: 'transparent' }}>
-        <OrbitControls />
         <GradientPlane />
       </Canvas>
     </div>
