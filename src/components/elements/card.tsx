@@ -2,7 +2,7 @@ import { AnchorHTMLAttributes, ComponentProps, ReactNode, RefAttributes } from '
 
 import Link, { LinkProps } from 'next/link';
 
-import { ExternalLinkIcon, EyeClosedIcon, EyeNoneIcon } from '@radix-ui/react-icons';
+import { ExternalLinkIcon, EyeNoneIcon } from '@radix-ui/react-icons';
 import { IconProps } from '@radix-ui/react-icons/dist/types';
 
 import Heading3, { Heading3Props } from '@/element/heading3';
