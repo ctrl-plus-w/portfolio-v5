@@ -1,4 +1,6 @@
 uniform float uTime;
+uniform float uMouseOpacity;
+uniform vec2 uMouse;
 varying vec2 vUv;
 
 //	Classic Perlin 3D Noise
@@ -76,15 +78,28 @@ float cnoise(vec3 P){
     return 2.2 * n_xyz;
 }
 
+vec3 rgb(int r, int g, int b) {
+    return vec3(float(r) / 255., float(g) / 255., float(b) / 255.);
+}
+
 void main() {
-    vec2 st = vUv;
+    vec2 pos = vUv;
+    vec2 mousePos = (uMouse + 1.) / 2.;
+    float time = uTime;
 
-    vec3 color1 = vec3(1. / 255., 5. / 255., 19. / 255.);
-    vec3 color2 = vec3(254. / 255., 248. / 255., 241. / 255.);
+    vec3 color1 = rgb(1, 5, 19);
+    vec3 color2 = rgb(254, 248, 241);
 
-    float d = cnoise(vec3(vUv * 6., uTime * .1));
+    float displacement = cnoise(vec3(pos * 6., time * .1));
+    vec3 finalColor = mix(color1, color2, displacement);
+    float dist = distance(mousePos, pos);
 
-    vec3 finalColor = mix(color1, color2, d);
+    if (dist < .2) {
+        float localDisplacement = cnoise(vec3(pos * 10., time * .1)) * 6.;
+        vec3 distanceFactor = vec3(pow(1. - dist / .2, 3.));
+
+        finalColor += distanceFactor * mix(color1, color2, localDisplacement) * uMouseOpacity;
+    }
 
     gl_FragColor = vec4(finalColor, 1.0);
 }
