@@ -1,10 +1,17 @@
 'use client';
 
-import { useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 import * as THREE from 'three';
 import { OrbitControls } from '@react-three/drei';
 import { Canvas, ThreeEvent, useFrame, useThree } from '@react-three/fiber';
+import {
+  animate,
+  useMotionTemplate,
+  useMotionValue,
+  useMotionValueEvent,
+  ValueAnimationTransition,
+} from 'motion/react';
 import { createNoise2D } from 'simplex-noise';
 
 import fragmentShader from '@/feature/gradient/fragmentShader.glsl';
@@ -68,14 +75,56 @@ const GradientPlane = () => {
   return (
     <mesh onPointerMove={handleMouseMove} onPointerEnter={handleMouseEnter} onPointerLeave={handleMouseLeave}>
       <planeGeometry args={[2, 2]} />
-      <shaderMaterial ref={materialRef} {...{ fragmentShader, vertexShader, uniforms }} />
+      <shaderMaterial transparent={true} ref={materialRef} {...{ fragmentShader, vertexShader, uniforms }} />
     </mesh>
   );
 };
 
 const AnimatedGradient = () => {
+  const polygon1Ref = useRef<SVGPolygonElement>(null);
+  const polygon2Ref = useRef<SVGPolygonElement>(null);
+
+  const y1 = useMotionValue(0);
+  const y2 = useMotionValue(1);
+
+  const polygon1 = useMotionTemplate`0,${y1} .15,${y1} .15,1 0,1`;
+  const polygon2 = useMotionTemplate`.2,0 1,0 1,${y2} .2,${y2}`;
+
+  useMotionValueEvent(polygon1, 'change', (value) => {
+    if (!polygon1Ref.current) return;
+    polygon1Ref.current.setAttribute('points', value);
+  });
+
+  useMotionValueEvent(polygon2, 'change', (value) => {
+    if (!polygon2Ref.current) return;
+    polygon2Ref.current.setAttribute('points', value);
+  });
+
+  useEffect(() => {
+    const options: ValueAnimationTransition = {
+      duration: 2,
+      ease: 'circInOut',
+      delay: 2,
+    };
+
+    const animation1 = animate(y1, [1, 0], options);
+    const animation2 = animate(y2, [0, 1], options);
+
+    return () => {
+      animation1.stop();
+      animation2.stop();
+    };
+  }, []);
+
   return (
-    <div className="row-span-3 overflow-hidden rounded">
+    <div className="row-span-3 overflow-hidden rounded" style={{ clipPath: 'url(#myClip)' }}>
+      <svg viewBox="0 0 100 100" width="0" height="0">
+        <clipPath viewBox="0 0 100 100" id="myClip" clipPathUnits="objectBoundingBox">
+          <polygon ref={polygon1Ref} />
+          <polygon ref={polygon2Ref} />
+        </clipPath>
+      </svg>
+
       <Canvas camera={{ position: [0, 0, 1.1] }} style={{ background: 'transparent' }}>
         <OrbitControls />
         <GradientPlane />
