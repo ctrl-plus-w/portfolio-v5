@@ -1,3 +1,5 @@
+'use client';
+
 import * as Card from '@/element/card';
 import Heading2 from '@/element/heading2';
 
