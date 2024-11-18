@@ -17,12 +17,12 @@ const SelectedProjects = () => {
   }, []);
 
   return (
-    <div className="col-start-1 row-start-3 flex flex-col gap-5 pb-16 pl-16">
+    <div className="col-start-1 row-start-3 flex flex-col gap-5 pb-16 md:pl-16">
       <Heading2 className="uppercase" {...slideDownAnimation(2)}>
         Selected Projects
       </Heading2>
 
-      <div ref={scope} className="grid grid-cols-2 grid-rows-2 gap-8">
+      <div ref={scope} className="grid grid-cols-1 grid-rows-4 gap-8 md:grid-cols-2 md:grid-rows-2">
         <Card.LinkRoot initial={{ opacity: 0 }} className="card" href="https://jobsparkle.nl" target="_blank">
           <Card.Header>
             <Card.Title>JobSparkle</Card.Title>

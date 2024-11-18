@@ -14,7 +14,7 @@ const Headings = () => {
   const { scope, mapChildren } = useBlurAnimation();
 
   return (
-    <div className="flex flex-col items-start gap-5 pl-16 pt-16">
+    <div className="flex flex-col items-start gap-5 pt-4 md:pl-16 md:pt-16">
       <Heading2 {...slideDownAnimation(0.4)}>Lukas Laudrain • Full-Stack Developer</Heading2>
 
       <Heading1 ref={scope}>
