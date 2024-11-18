@@ -1,32 +1,29 @@
 'use client';
 
-import { useLayoutEffect, useRef } from 'react';
+import { useCallback, useLayoutEffect, useRef } from 'react';
 
-import AnimatedGradient from '@/feature/gradient/animated-gradient';
-import Headings from '@/feature/hero/headings';
-import SelectedProjects from '@/feature/hero/selected-projects';
-
-import BreakpointDisplay from '@/element/breakpoint-display';
+import Footer from '@/feature/footer/footer';
+import HeroSection from '@/feature/hero/hero';
 
 const LandingPage = () => {
-  const mainRef = useRef<HTMLDivElement>(null);
+  const heroRef = useRef<HTMLDivElement>(null);
   const footerRef = useRef<HTMLDivElement>(null);
 
-  useLayoutEffect(() => {
-    if (!mainRef.current || !footerRef.current) return;
+  const setupScrollBehavior = useCallback(() => {
+    if (!heroRef.current || !footerRef.current) return () => undefined;
 
-    const { height: mainHeight } = mainRef.current.getBoundingClientRect();
+    const { height: mainHeight } = heroRef.current.getBoundingClientRect();
     const { height: footerHeight } = footerRef.current.getBoundingClientRect();
 
     document.body.style.height = mainHeight + footerHeight + 'px';
 
     const onScroll = () => {
-      if (!mainRef.current || !footerRef.current) return;
+      if (!heroRef.current || !footerRef.current) return;
       const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
       const maxScrollTop = mainHeight - window.innerHeight;
 
       const mainScrollTop = Math.min(scrollTop, maxScrollTop);
-      mainRef.current.style.top = -mainScrollTop + 'px';
+      heroRef.current.style.top = -mainScrollTop + 'px';
 
       const footerScrollTop = Math.max(scrollTop - mainScrollTop, 0);
       footerRef.current.style.top = window.innerHeight - footerScrollTop + 'px';
@@ -38,21 +35,27 @@ const LandingPage = () => {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  useLayoutEffect(() => {
+    let cleanup = setupScrollBehavior();
+
+    const onResize = () => {
+      cleanup();
+
+      cleanup = setupScrollBehavior();
+    };
+
+    window.addEventListener('resize', onResize);
+
+    return () => {
+      cleanup();
+      window.removeEventListener('resize', onResize);
+    };
+  }, []);
+
   return (
     <>
-      <main
-        ref={mainRef}
-        className="fixed top-0 z-10 grid w-full grid-rows-[auto_1fr_auto] gap-x-32 gap-y-8 p-8 md:h-svh md:grid-cols-[2fr_1fr]"
-      >
-        <Headings />
-        <SelectedProjects />
-
-        <BreakpointDisplay breakpoints={['lg', 'xl', '2xl']}>
-          <AnimatedGradient />
-        </BreakpointDisplay>
-      </main>
-
-      <footer ref={footerRef} className="fixed top-[100svh] z-20 h-svh w-svw bg-primary"></footer>
+      <HeroSection ref={heroRef} />
+      <Footer ref={footerRef} />
     </>
   );
 };
