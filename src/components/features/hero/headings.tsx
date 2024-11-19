@@ -13,6 +13,11 @@ import { popAnimation, slideDownAnimation } from '@/util/motion.util';
 const Headings = () => {
   const { scope, mapChildren } = useBlurAnimation();
 
+  const onClick = () => {
+    if (typeof window === 'undefined') return;
+    window.scrollTo(0, document.body.scrollHeight);
+  };
+
   return (
     <div className="flex flex-col items-start gap-5 pt-4 md:pl-16 md:pt-16">
       <Heading2 {...slideDownAnimation(0.4)}>Lukas Laudrain • Full-Stack Developer</Heading2>
@@ -21,7 +26,7 @@ const Headings = () => {
         {mapChildren('Streamlining operations with custom web apps tailored to your business needs')}
       </Heading1>
 
-      <Button className="mt-3" {...popAnimation(2.5)}>
+      <Button onClick={onClick} className="mt-3" {...popAnimation(2.5)}>
         Let&apos;s talk
       </Button>
     </div>
