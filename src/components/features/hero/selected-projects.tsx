@@ -23,6 +23,22 @@ const SelectedProjects = () => {
       </Heading2>
 
       <div ref={scope} className="grid grid-cols-1 grid-rows-4 gap-8 md:grid-cols-2 md:grid-rows-2">
+        <Card.LinkCardRoot
+          initial={{ opacity: 0 }}
+          className="card"
+          href="https://ysak.lukaslaudrain.fr"
+          target="_blank"
+        >
+          <Card.Header>
+            <Card.Title>Ysak</Card.Title>
+            <Card.ExternalIcon />
+          </Card.Header>
+
+          <Card.Content>
+            A tool to organize projects, estimate tasks, track time, and analyze profitability in one intuitive platform
+          </Card.Content>
+        </Card.LinkCardRoot>
+
         <Card.LinkRoot initial={{ opacity: 0 }} className="card" href="https://jobsparkle.nl" target="_blank">
           <Card.Header>
             <Card.Title>JobSparkle</Card.Title>
@@ -63,15 +79,6 @@ const SelectedProjects = () => {
             company&apos;s work.
           </Card.Content>
         </Card.LinkRoot>
-
-        <Card.Root initial={{ opacity: 0 }} className="card">
-          <Card.Header>
-            <Card.Title>Little Wonder Captures</Card.Title>
-            <Card.EyeNoneIcon />
-          </Card.Header>
-
-          <Card.Content>A web app designed to streamline and refactor Excel workflows for app testers.</Card.Content>
-        </Card.Root>
       </div>
     </div>
   );
