@@ -1,3 +1,4 @@
+import { GoogleAnalytics } from '@next/third-parties/google';
 import { Metadata } from 'next';
 
 import '@/style/globals.css';
@@ -15,7 +16,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <Favicon />
       </head>
+
       <body>{children}</body>
+
+      <GoogleAnalytics gaId="G-X5LDMCC15E" />
     </html>
   );
 }
