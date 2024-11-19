@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { memo, useEffect, useMemo, useRef, useState } from 'react';
 
 import * as THREE from 'three';
 import { Canvas, ThreeEvent, useFrame, useThree } from '@react-three/fiber';
@@ -94,7 +94,7 @@ const GradientPlane = () => {
   );
 };
 
-const AnimatedGradient = () => {
+const AnimatedGradient = memo(() => {
   const polygon1Ref = useRef<SVGPolygonElement>(null);
   const polygon2Ref = useRef<SVGPolygonElement>(null);
 
@@ -131,7 +131,7 @@ const AnimatedGradient = () => {
   }, []);
 
   return (
-    <div className="row-span-3 overflow-hidden rounded" style={{ clipPath: 'url(#myClip)' }}>
+    <div className="animated-gradient row-span-3 overflow-hidden rounded" style={{ clipPath: 'url(#myClip)' }}>
       <svg viewBox="0 0 100 100" width="0" height="0">
         <clipPath viewBox="0 0 100 100" id="myClip" clipPathUnits="objectBoundingBox">
           <polygon ref={polygon1Ref} />
@@ -144,6 +144,7 @@ const AnimatedGradient = () => {
       </Canvas>
     </div>
   );
-};
+});
+AnimatedGradient.displayName = 'AnimatedGradient';
 
 export default AnimatedGradient;
