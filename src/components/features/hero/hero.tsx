@@ -6,13 +6,18 @@ import SelectedProjects from '@/feature/hero/selected-projects';
 
 import BreakpointDisplay from '@/element/breakpoint-display';
 
+import { cn } from '@/util/style.util';
+
 export interface HeroSectionProps {}
 
 const HeroSection = forwardRef<HTMLDivElement, HeroSectionProps>((_, ref) => {
   return (
     <main
       ref={ref}
-      className="fixed top-0 z-10 grid w-full grid-rows-[auto_1fr_auto] gap-x-32 gap-y-8 p-8 md:h-svh md:grid-cols-[2fr_1fr]"
+      className={cn(
+        'fixed top-0 z-10 w-full bg-secondary p-8 md:h-svh',
+        'grid grid-rows-[auto_1fr_auto] gap-x-32 gap-y-8 md:grid-cols-[2fr_1fr]',
+      )}
     >
       <Headings />
       <SelectedProjects />

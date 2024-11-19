@@ -18,8 +18,10 @@ const config: Config = {
         svh: '100svh',
       },
       colors: {
-        primary: '#02081E',
-        secondary: '#FEF8F1',
+        primary: 'rgb(var(--color-primary))',
+        'primary-darker': 'rgb(var(--color-primary-darker))',
+
+        secondary: 'rgb(var(--color-secondary))',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

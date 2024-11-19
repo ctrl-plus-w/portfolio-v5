@@ -25,10 +25,9 @@ export interface FooterProps {}
 
 const Footer = forwardRef<HTMLDivElement, FooterProps>((_, ref) => {
   return (
-    <footer ref={ref} className="fixed top-full z-20 grid w-svw grid-cols-2 gap-x-32 gap-y-8 bg-primary p-24">
+    <footer ref={ref} className="bg-primary-darker fixed top-full z-20 grid w-svw grid-cols-2 gap-x-32 gap-y-8 p-24">
       <Heading1 className="text-secondary">
-        Looking to collaborate or have questions? Reach out — I’d love to connect so as to create something great
-        together.
+        Looking to collaborate or have questions? Reach out — I’d love to connect and create something great together
       </Heading1>
 
       <div className="col-start-2 flex flex-col gap-5">
