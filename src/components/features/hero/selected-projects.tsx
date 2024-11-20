@@ -35,7 +35,8 @@ const SelectedProjects = () => {
           </Card.Header>
 
           <Card.Content>
-            A tool to organize projects, estimate tasks, track time, and analyze profitability in one intuitive platform
+            Organizes tasks, tracks time, and analyzes profitability within an intuitive, all-in-one platform,
+            simplifying project management for teams.
           </Card.Content>
         </Card.LinkCardRoot>
 
@@ -46,8 +47,8 @@ const SelectedProjects = () => {
           </Card.Header>
 
           <Card.Content>
-            A job search platform connecting professionals in the Netherlands with tailored opportunities across various
-            industries.
+            Connects professionals with tailored job opportunities using advanced matching algorithms, boosting career
+            growth across industries.
           </Card.Content>
         </Card.LinkRoot>
 
@@ -63,8 +64,8 @@ const SelectedProjects = () => {
           </Card.Header>
 
           <Card.Content>
-            A webapp that provides tools to interact with the ESAIP&apos;s platforms. Allowing students to check their
-            schedule and grades easily.
+            Provides seamless access to schedules and grades, enhancing academic planning and user interaction with
+            ESAIP’s platforms.
           </Card.Content>
         </Card.LinkRoot>
 
@@ -75,8 +76,8 @@ const SelectedProjects = () => {
           </Card.Header>
 
           <Card.Content>
-            A showcase website for a decoration and painting company in France. The goal was to showcase the
-            company&apos;s work.
+            Showcases craftsmanship through an elegant portfolio, designed to attract clients and elevate the company’s
+            online presence.
           </Card.Content>
         </Card.LinkRoot>
       </div>
