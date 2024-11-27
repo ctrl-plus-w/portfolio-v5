@@ -15,8 +15,8 @@ const HeroSection = forwardRef<HTMLDivElement, HeroSectionProps>((_, ref) => {
     <main
       ref={ref}
       className={cn(
-        'fixed top-0 z-10 w-full bg-secondary p-8 md:h-svh',
-        'grid grid-rows-[auto_1fr_auto] gap-x-32 gap-y-8 md:grid-cols-[2fr_1fr]',
+        'fixed top-0 z-10 w-full bg-secondary p-8 md:min-h-[100svh]',
+        'grid grid-rows-[auto_auto_auto] gap-x-32 gap-y-8 md:grid-cols-[2fr_1fr]',
       )}
     >
       <Headings />
