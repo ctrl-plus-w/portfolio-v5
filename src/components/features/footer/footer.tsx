@@ -39,7 +39,7 @@ const Footer = forwardRef<HTMLDivElement, FooterProps>((_, ref) => {
         <div className="grid grid-cols-1 grid-rows-4 gap-4 md:grid-cols-2 md:grid-rows-2">
           <ContactItem label="Github" href="https://github.com/ctrl-plus-w" />
           <ContactItem label="Email" href="mailto:lukas.ldrn@gmail.com" hrefLabel="lukas.ldrn@gmail.com" />
-          <ContactItem label="LinkedIn" href="www.linkedin.com/in/lukaslaudrain" />
+          <ContactItem label="LinkedIn" href="https://www.linkedin.com/in/lukaslaudrain" />
           <ContactItem label="Phone" href="tel:+33766324438" hrefLabel="+33 7 66 32 44 38" />
         </div>
       </div>
