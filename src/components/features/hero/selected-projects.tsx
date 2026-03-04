@@ -40,15 +40,15 @@ const SelectedProjects = () => {
           </Card.Content>
         </Card.LinkCardRoot>
 
-        <Card.LinkRoot initial={{ opacity: 0 }} className="card" href="https://jobsparkle.nl" target="_blank">
+        <Card.LinkRoot initial={{ opacity: 0 }} className="card" href="https://www.myb2bcatalog.com" target="_blank">
           <Card.Header>
-            <Card.Title>JobSparkle</Card.Title>
+            <Card.Title>MyB2BCatalog</Card.Title>
             <Card.ExternalIcon />
           </Card.Header>
 
           <Card.Content>
-            Connects professionals with tailored job opportunities using advanced matching algorithms, boosting career
-            growth across industries.
+            A B2B SaaS multi-tenant catalog platform where sellers manage product catalogs with flexible pricing rules
+            and customers access dedicated storefronts via slug-based routing.
           </Card.Content>
         </Card.LinkRoot>
 
